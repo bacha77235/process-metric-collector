@@ -32,3 +32,10 @@ The timer is `unref`'d so it will not keep a process alive on its own.
 - `DEFAULT_INTERVAL_MS` — `1000`.
 
 ESM only. No third-party dependencies.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
